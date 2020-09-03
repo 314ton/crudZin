@@ -1,0 +1,18 @@
+{{ define "New" }}
+{{ template "Header" }}
+
+<form method="post" action="new">
+
+<label for="nome">Nome</label>
+<input type="text" name="nome" id="nome" 
+	placeholder="nome" />
+
+<label for="email">Email</label>
+<input type="text" name="email" id="email" 
+	placeholder="email" />
+
+<button type="submit">Enviar</button>
+</form>
+
+{{ template "Footer" }}
+{{ end }}

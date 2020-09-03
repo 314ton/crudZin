@@ -1,0 +1,25 @@
+{{define "Index" }}
+{{ template "Header" }}
+{{ template "Menu" }}
+
+	<section>
+		<center>
+			<h1>Segundo app web!</h1>
+			<h2>Go Lang é muiti Foda S2</h2>
+		</center>
+		{{ range .}}
+		<div>
+			<ul>
+				<li>{{ .Id }}</li>
+				<li>{{ .Nome }}</li>
+				<li>{{ .Email}}</li>
+				<li>
+			<a href="update?id={{ .Id }}">Edit</a>
+				</li>
+			</ul>
+		</div>
+		{{ end }}
+	</section>
+
+{{ template "Footer" }}
+{{ end }}
