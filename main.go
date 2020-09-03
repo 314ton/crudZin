@@ -32,32 +32,6 @@ func conn() (db *sql.DB) {
 
 var tmpl = template.Must(template.ParseGlob("templates/*"))
 
-func Index(w http.ResponseWriter, r *http.Request) {
-	db := conn()
-	defer db.Close()
-	var allUsers []users
-	rep, err := db.Query("SELECT * FROM users")
-	if err != nil {
-		panic(err.Error())
-	}
-	for rep.Next() {
-		var user users
-		var id int
-		var email, nome string
-		err := rep.Scan(&id, &nome, &email)
-		if err != nil {
-			panic(err.Error())
-		}
-		user.Id = id
-		user.Nome = string(nome)
-		user.Email = string(email)
-
-		allUsers = append(allUsers, user)
-	}
-	log.Println("Func Index foi executada")
-	tmpl.ExecuteTemplate(w, "Index", allUsers)
-}
-
 func main() {
 	static := http.FileServer(http.Dir("./static"))
 	http.Handle(
@@ -65,6 +39,7 @@ func main() {
 		http.StripPrefix("/static/",
 			static),
 	)
+	http.HandleFunc("/delete", Delete)
 	http.HandleFunc("/update", Update)
 	http.HandleFunc("/new", New)
 	http.HandleFunc("/", Index)

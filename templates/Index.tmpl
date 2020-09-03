@@ -4,8 +4,8 @@
 
 	<section>
 		<center>
-			<h1>Segundo app web!</h1>
-			<h2>Go Lang é muiti Foda S2</h2>
+			<h1>Registro De Usuários</h1>
+			<h2>Go Lang é muito Foda S2</h2>
 		</center>
 		{{ range .}}
 		<div>
@@ -14,7 +14,13 @@
 				<li>{{ .Nome }}</li>
 				<li>{{ .Email}}</li>
 				<li>
-			<a href="update?id={{ .Id }}">Edit</a>
+		<a href="update?id={{ .Id }}">Edit</a>
+				</li>
+				<li>
+		<form method="post" action="delete" >
+		<input type="hidden" name="id" value="{{ .Id }}" />
+		<button type="submit">Deletar</button>
+		</form>
 				</li>
 			</ul>
 		</div>
